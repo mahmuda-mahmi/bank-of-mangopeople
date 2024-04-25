@@ -3,27 +3,32 @@ document.getElementById('btn-withdraw').addEventListener('click', function () {
        const withdrawInputString = withdraw.value;
        const withdrawInput = parseFloat(withdrawInputString);
 
-       const withdrawNow = document.getElementById('withdraw-total');
-       const withdrawValueString = withdrawNow.innerText;
-       const withdrawValue = parseFloat(withdrawValueString);
+       if (!isNaN(withdrawInputString)) {
+              const withdrawNow = document.getElementById('withdraw-total');
+              const withdrawValueString = withdrawNow.innerText;
+              const withdrawValue = parseFloat(withdrawValueString);
 
-       withdraw.value = '';
+              withdraw.value = '';
 
-       const balanceNow = document.getElementById('balance-total');
-       const balanceValueString = balanceNow.innerText;
-       const balanceValue = parseFloat(balanceValueString);
-       const balanceUpdate = balanceValue - withdrawInput;
+              const balanceNow = document.getElementById('balance-total');
+              const balanceValueString = balanceNow.innerText;
+              const balanceValue = parseFloat(balanceValueString);
+              const balanceUpdate = balanceValue - withdrawInput;
 
-       if(withdrawInput > balanceValue){
-              alert('TAKA NAIIIIII!!!')
-              return;
+              if (withdrawInput > balanceValue) {
+                     alert('TAKA NAIIIIII!!!')
+                     return;
+              }
+
+              const withdrawTotal = withdrawInput + withdrawValue;
+              withdrawNow.innerText = withdrawTotal;
+
+              balanceNow.innerText = balanceUpdate;
+
+       } else {
+              alert('Please give us a number');
+              withdraw.value = '';
+
        }
-
-       const withdrawTotal = withdrawInput + withdrawValue;
-       withdrawNow.innerText = withdrawTotal;
-       
-       balanceNow.innerText = balanceUpdate;
-
-
 
 })
